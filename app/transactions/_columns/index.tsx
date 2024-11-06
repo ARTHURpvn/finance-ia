@@ -1,32 +1,14 @@
 "use client";
 
+import {
+  TRANSACTION_CATEGORIES_LABELS,
+  TRANSACTION_PAYMENT_METHODS_LABELS,
+} from "@/app/_constantes";
 import { Badge } from "@/app/components/ui/badge";
 import { Button } from "@/app/components/ui/button";
 import { Transaction, TransactionType } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
 import { CircleIcon, PencilIcon, TrashIcon } from "lucide-react";
-
-const TRANSACTION_CATEGORIES_MAP = {
-  HOUSING: "Moradia",
-  FOOD: "Alimentação",
-  ENTERTAINMENT: "Lazer",
-  HEALTH: "Saude",
-  EDUCATION: "Educacao",
-  OTHER: "Outros",
-  SALARY: "Salario",
-  TRANSPORTATION: "Transporte",
-  UTILITY: "Utilidades",
-};
-
-const TRANSACTION_PAYMENT_METHODS_MAP = {
-  BANK_TRANSFER: "Transf. Bancária",
-  CREDIT_CARD: "Cartão de Credito",
-  DEBIT_CARD: "Cartão de Debito",
-  BANK_SLIP: "Boleto",
-  CASH: "Dinheiro",
-  PIX: "Pix",
-  OTHER: "Outros",
-};
 
 export const transactionColumns: ColumnDef<Transaction>[] = [
   {
@@ -65,13 +47,13 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
     accessorKey: "category",
     header: "Categoria",
     cell: ({ row: { original: transaction } }) =>
-      TRANSACTION_CATEGORIES_MAP[transaction.category],
+      TRANSACTION_CATEGORIES_LABELS[transaction.category],
   },
   {
     accessorKey: "paymentMethod",
     header: "Método de pagamento",
     cell: ({ row: { original: transaction } }) =>
-      TRANSACTION_PAYMENT_METHODS_MAP[transaction.paymentMethod],
+      TRANSACTION_PAYMENT_METHODS_LABELS[transaction.paymentMethod],
   },
   {
     accessorKey: "date",
