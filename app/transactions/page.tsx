@@ -1,1 +1,5 @@
-<fieldset></fieldset>
+const TransitionPage = () => {
+    return;
+}
+ 
+export default TransitionPage;
