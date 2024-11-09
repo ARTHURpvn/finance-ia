@@ -3,9 +3,19 @@ import UpsertTransactionButton from "../_components/add-transaction-button";
 import { DataTable } from "../_components/ui/data-table";
 import { transactionColumns } from "./_columns";
 import Navbar from "../_components/navbar";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 const TransitionPage = async () => {
-  const transaction = await db.transaction.findMany({});
+  const { userId } = await auth();
+  if (!userId) {
+    redirect("/login");
+  }
+  const transaction = await db.transaction.findMany({
+    where: {
+      userId,
+    },
+  });
 
   return (
     <>
