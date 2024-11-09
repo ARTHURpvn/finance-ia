@@ -1,6 +1,6 @@
-import { UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import Navbar from "./_components/navbar";
 
 const Home = async () => {
   const { userId } = await auth();
@@ -8,9 +8,9 @@ const Home = async () => {
     redirect("/login");
   }
   return (
-    <div className="flex items-center justify-center h-full">
-      <UserButton showName />
-    </div>
+    <>
+      <Navbar />
+    </>
   );
 };
 
