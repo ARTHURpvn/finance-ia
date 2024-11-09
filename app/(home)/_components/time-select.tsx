@@ -29,7 +29,7 @@ const TimeSelect = () => {
   const searchParams = useSearchParams();
   const month = searchParams.get("month");
   const handleMonthChanege = (month: string) => {
-    push(`/?month=0${month}`);
+    push(`/?month=${month}`);
   };
   return (
     <Select
