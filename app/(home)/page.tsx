@@ -6,6 +6,7 @@ import TimeSelect from "./_components/time-select";
 import { isMatch } from "date-fns";
 import TransactionsPieChart from "./_components/transactions-pie-chat";
 import { getDashboard } from "../_data/get-dashboard";
+import ExpensesPerCateory from "./_components/expenses-per-cateory";
 
 interface Props {
   searchParams: {
@@ -20,7 +21,8 @@ const Home = async ({ searchParams: { month } }: Props) => {
   }
   const monthIsValid = !month || !isMatch(month, "MM");
   if (monthIsValid) {
-    redirect("/?month=01");
+    const month = new Date().getMonth() + 1;
+    redirect(`/?month=${month}`);
   }
 
   const dashboard = await getDashboard(month);
@@ -37,6 +39,9 @@ const Home = async ({ searchParams: { month } }: Props) => {
             <SummaryCards {...dashboard} />
             <div className="grid grid-cols-3 grid-rows-1 gap-6">
               <TransactionsPieChart {...dashboard} />
+              <ExpensesPerCateory
+                expensesPerCategory={dashboard.totalExpensePerCategory}
+              />
             </div>
           </div>
         </div>
