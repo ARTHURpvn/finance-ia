@@ -8,6 +8,7 @@ import TransactionsPieChart from "./_components/transactions-pie-chat";
 import { getDashboard } from "../_data/get-dashboard";
 import ExpensesPerCateory from "./_components/expenses-per-cateory";
 import LastTransacation from "./_components/last-transacation";
+import { canUserAddTransaction } from "../_data/can-user-add-transaction";
 
 interface Props {
   searchParams: {
@@ -27,6 +28,7 @@ const Home = async ({ searchParams: { month } }: Props) => {
   }
 
   const dashboard = await getDashboard(month);
+  const userCanAddTransaction = await canUserAddTransaction();
   return (
     <>
       <Navbar />
@@ -37,7 +39,10 @@ const Home = async ({ searchParams: { month } }: Props) => {
         </div>
         <div className="grid grid-cols-[2fr,1fr] gap-6 overflow-hidden">
           <div className="flex flex-col gap-6 overflow-hidden">
-            <SummaryCards {...dashboard} />
+            <SummaryCards
+              {...dashboard}
+              userCanAddTransaction={userCanAddTransaction!}
+            />
             <div className="grid grid-cols-3 grid-rows-1 gap-6 overflow-hidden">
               <TransactionsPieChart {...dashboard} />
               <ExpensesPerCateory
