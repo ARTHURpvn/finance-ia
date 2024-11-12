@@ -5,11 +5,11 @@ import {
   TRANSACTION_PAYMENT_METHODS_LABELS,
 } from "@/app/_constantes";
 import { Badge } from "@/app/_components/ui/badge";
-import { Button } from "@/app/_components/ui/button";
 import { Transaction, TransactionType } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
-import { CircleIcon, TrashIcon } from "lucide-react";
+import { CircleIcon } from "lucide-react";
 import EditTransactionButton from "../_components/edit-transaction-button";
+import DeleteTransactionButton from "../_components/delete-transaction-button";
 
 export const transactionColumns: ColumnDef<Transaction>[] = [
   {
@@ -81,14 +81,8 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
     cell: ({ row: { original: transaction } }) => {
       return (
         <div className="space-x-1">
-          <Button
-            variant={"ghost"}
-            size={"icon"}
-            className="text-muted-foreground"
-          >
-            <TrashIcon />
-          </Button>
           <EditTransactionButton transaction={transaction} />
+          <DeleteTransactionButton transactionId={transaction.id} />
         </div>
       );
     },
