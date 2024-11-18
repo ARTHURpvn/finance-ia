@@ -12,11 +12,11 @@ import {
 } from "@/app/_components/ui/dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { BotIcon, Loader2Icon } from "lucide-react";
-import { generateAiReport } from "../_actions/generate-ai-report";
 import { useState } from "react";
 import { ScrollArea } from "@/app/_components/ui/scroll-area";
 import Markdown from "react-markdown";
 import Link from "next/link";
+import { ConnectAi } from "./conect-ai";
 
 interface AIReportButtonProps {
   hasPremiumPlan: boolean;
@@ -29,7 +29,7 @@ const AiReportButton = ({ month, hasPremiumPlan }: AIReportButtonProps) => {
   const handleGenerateReportClick = async () => {
     try {
       setReportIsLoading(true);
-      const aiReport = await generateAiReport({ month });
+      const aiReport = await ConnectAi({ month });
       setReport(aiReport);
     } catch (error) {
       console.log(error);
@@ -62,7 +62,7 @@ const AiReportButton = ({ month, hasPremiumPlan }: AIReportButtonProps) => {
                 insights sobre suas finanças
               </DialogDescription>
             </DialogHeader>
-            <ScrollArea className="prose prose-h3:text-white prose-h4:text-white prose-strong:text-white max-h-[450px] text-white">
+            <ScrollArea className="prose prose-headings:text-white prose-strong:text-white max-h-[450px] text-white">
               <Markdown>{report}</Markdown>
             </ScrollArea>
             <DialogFooter>
