@@ -31,7 +31,7 @@ export const ConnectAi = async ({ month }: GenerateAiReportSchema) => {
       },
     },
   });
-  const content = `Gere um relatório com insights sobre as minhas finanças, com dias e orientações de como melhorar minha vida financeira. As transações estão dividas por ponto e virgula. A estrutura de cada uma é {DATA}-{TIPO}-{VALOR}-{CATEGORIA}. Mostre as minhas transações de um jeito mais organizavel e legivel. São elas:
+  const content = `Você é um analista profissional de fincanças. Gere um relatório com insights sobre as minhas finanças, com dias e orientações de como melhorar minha vida financeira. Você esta pegando essas informações de um site onde o usuario informa todos os valores falados anteriormente. As transações estão dividas por ponto e virgula. A estrutura de cada uma é {DATA}-{TIPO}-{VALOR}-{CATEGORIA}. São elas:
       ${transactions
         .map(
           (transaction) =>
