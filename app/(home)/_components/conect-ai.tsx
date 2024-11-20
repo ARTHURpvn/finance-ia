@@ -40,8 +40,5 @@ export const ConnectAi = async ({ month }: GenerateAiReportSchema) => {
         .join(";")}`;
 
   const result = await model.generateContent(content);
-
-  console.log(result.response.text());
-  console.log(result.response.text());
   return await result.response.text();
 };
