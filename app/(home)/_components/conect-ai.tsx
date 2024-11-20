@@ -8,9 +8,9 @@ import {
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { db } from "@/app/_lib/prisma";
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API as string);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 export const ConnectAi = async ({ month }: GenerateAiReportSchema) => {
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-8b" });
   generateAiReportSchema.parse({ month });
   const { userId } = await auth();
   if (!userId) {
