@@ -16,7 +16,7 @@ import { useState } from "react";
 import { ScrollArea } from "@/app/_components/ui/scroll-area";
 import Markdown from "react-markdown";
 import Link from "next/link";
-import { ConnectAi } from "./conect-ai";
+import { ConnectAi } from "../_actions/generate-ai-report";
 
 interface AIReportButtonProps {
   hasPremiumPlan: boolean;

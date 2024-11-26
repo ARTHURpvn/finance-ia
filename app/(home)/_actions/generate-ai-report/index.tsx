@@ -1,10 +1,7 @@
 "use server";
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import {
-  generateAiReportSchema,
-  GenerateAiReportSchema,
-} from "../_actions/generate-ai-report/schema";
+import { generateAiReportSchema, GenerateAiReportSchema } from "./schema";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { db } from "@/app/_lib/prisma";
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API as string);
